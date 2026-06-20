@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Dansk Ord — 1000 Essential Danish Words</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Fredoka:wght@500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root {
     --bg: #0e1117;
@@ -97,6 +97,9 @@
   .danish-word { font-family: 'DM Serif Display', serif; font-size: 26px; color: var(--text); text-align: center; line-height: 1.2; margin-bottom: 5px; }
   .word-type { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px; }
   .card-num { position: absolute; top: 9px; right: 11px; font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--text-dim); }
+  .adult-speaker-btn { position: absolute; top: 7px; left: 9px; width: 24px; height: 24px; border-radius: 50%; background: transparent; border: 1px solid var(--border); color: var(--text-dim); font-size: 11px; cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 0; transition: all 0.15s; line-height: 1; }
+  .adult-speaker-btn:hover { border-color: var(--accent); color: var(--accent2); transform: scale(1.1); }
+  .adult-speaker-btn:active { transform: scale(0.92); }
   .english-word { font-size: 17px; font-weight: 500; color: var(--accent2); text-align: center; }
   .known-dot { position: absolute; bottom: 9px; right: 11px; width: 16px; height: 16px; border-radius: 50%; background: var(--success); display: flex; align-items: center; justify-content: center; font-size: 9px; color: #0a2010; opacity: 0; transition: opacity 0.25s; }
   .card-wrap.known .known-dot { opacity: 1; }
@@ -117,6 +120,95 @@
   .mode-toggle { display: inline-flex; background: var(--bg); border: 1px solid var(--border); border-radius: 20px; padding: 2px; margin-right: 4px; }
   .mode-toggle button { background: transparent; border: none; color: var(--text-muted); padding: 5px 14px; font-family: 'Inter', sans-serif; font-size: 12px; cursor: pointer; border-radius: 18px; transition: all 0.18s; }
   .mode-toggle button.active { background: var(--accent); color: #fff; }
+
+  /* ════════════════════════════════════════════════════════════════════
+     KIDS MODE — bright, playful, audio-first UI for ages 5-7
+     ════════════════════════════════════════════════════════════════════ */
+  body.mode-kids { background: linear-gradient(180deg, #fff8e7 0%, #ffe9f0 100%); color: #2d2a4a; }
+  body.mode-kids header { background: rgba(255,255,255,0.92); border-bottom: 2px solid #ffd9a8; }
+  body.mode-kids .logo, body.mode-kids .logo span { color: #ff7a59; }
+  body.mode-kids .stat-pill { background: #fff; border-color: #ffd9a8; color: #6b5b8a; font-family: 'Fredoka', sans-serif; font-weight: 500; }
+  body.mode-kids .stat-pill b { color: #ff7a59; }
+  body.mode-kids .btn { background: #fff; border-color: #ffd9a8; color: #6b5b8a; font-family: 'Fredoka', sans-serif; font-weight: 500; }
+  body.mode-kids .btn:hover { border-color: #ff7a59; color: #ff7a59; }
+  body.mode-kids .btn-shuffle { background: linear-gradient(135deg, #ff9a7a, #ff7a59); color: #fff; }
+  body.mode-kids .mode-toggle { background: #fff; border-color: #ffd9a8; }
+  body.mode-kids .mode-toggle button { color: #6b5b8a; font-family: 'Fredoka', sans-serif; font-weight: 500; }
+  body.mode-kids .mode-toggle button.active { background: #ff7a59; color: #fff; }
+
+  body.mode-kids .sidebar { background: #fff; border-right: 2px solid #ffd9a8; }
+  body.mode-kids .sidebar-title { color: #b8a0c0; }
+  body.mode-kids .cat-name { color: #6b5b8a; font-family: 'Fredoka', sans-serif; font-weight: 500; font-size: 14px; }
+  body.mode-kids .cat-icon { font-size: 22px; }
+  body.mode-kids .cat-item { padding: 10px 16px; }
+  body.mode-kids .cat-item:hover { background: #fff5e9; }
+  body.mode-kids .cat-item.active { background: #fff0e0; border-left-color: #ff7a59; }
+  body.mode-kids .cat-item.active .cat-name { color: #ff7a59; }
+  body.mode-kids .cat-count { background: #fff5e9; color: #b8a0c0; font-family: 'Fredoka', sans-serif; }
+  body.mode-kids .cat-item.active .cat-count { background: #ffe0d0; color: #ff7a59; }
+
+  body.mode-kids .topbar { background: rgba(255,255,255,0.85); border-bottom: 2px solid #ffd9a8; }
+  body.mode-kids input[type="text"] { background: #fff; border-color: #ffd9a8; color: #2d2a4a; font-family: 'Fredoka', sans-serif; font-size: 15px; padding: 10px 12px 10px 36px; border-radius: 22px; }
+  body.mode-kids input[type="text"]:focus { border-color: #ff7a59; }
+  body.mode-kids input[type="text"]::placeholder { color: #b8a0c0; }
+  body.mode-kids .search-wrap svg { color: #b8a0c0; }
+
+  body.mode-kids .progress-bar-wrap { background: rgba(255,255,255,0.85); border-bottom: 2px solid #ffd9a8; }
+  body.mode-kids .progress-info { color: #6b5b8a; font-family: 'Fredoka', sans-serif; font-weight: 500; }
+  body.mode-kids .progress-track { background: #ffe9d4; height: 8px; border-radius: 8px; }
+  body.mode-kids .progress-fill { background: linear-gradient(90deg, #ff9a7a, #ff7a59); border-radius: 8px; }
+
+  body.mode-kids .section-heading h2 { font-family: 'Fredoka', sans-serif; font-weight: 700; color: #2d2a4a; font-size: 28px; }
+  body.mode-kids .section-count { color: #b8a0c0; font-family: 'Fredoka', sans-serif; }
+
+  /* Kid card grid: bigger cards, more space */
+  body.mode-kids .grid-container { grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 18px; padding: 16px 24px 80px; }
+  body.mode-kids .card-wrap { height: 220px; perspective: none; }
+  body.mode-kids .card-inner { transition: transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1); transform-style: flat; }
+  body.mode-kids .card-wrap.popping .card-inner { transform: scale(1.08); }
+  body.mode-kids .card-wrap:hover .card-inner { transform: scale(1.04); }
+  body.mode-kids .card-wrap.flipped .card-inner { transform: none; }
+  body.mode-kids .card-face { background: #fff; border-radius: 22px; border: 3px solid #ffd9a8; box-shadow: 0 4px 0 #ffd9a8, 0 8px 20px rgba(255,154,122,0.15); padding: 18px 14px; backface-visibility: visible; position: relative; flex-direction: column; gap: 6px; }
+  body.mode-kids .card-back { display: none; }
+  body.mode-kids .card-wrap:hover .card-face { box-shadow: 0 6px 0 #ffd9a8, 0 12px 28px rgba(255,154,122,0.25); }
+
+  /* Per-category pastel backgrounds */
+  body.mode-kids .card-face.cat-Animals  { background: #e8f8e0; border-color: #a8d995; box-shadow: 0 4px 0 #a8d995, 0 8px 20px rgba(168,217,149,0.15); }
+  body.mode-kids .card-face.cat-Food     { background: #fff0d4; border-color: #ffc97a; box-shadow: 0 4px 0 #ffc97a, 0 8px 20px rgba(255,201,122,0.18); }
+  body.mode-kids .card-face.cat-Colours  { background: #ffe6f2; border-color: #ff9bcc; box-shadow: 0 4px 0 #ff9bcc, 0 8px 20px rgba(255,155,204,0.18); }
+  body.mode-kids .card-face.cat-Numbers  { background: #e0effb; border-color: #88b8e8; box-shadow: 0 4px 0 #88b8e8, 0 8px 20px rgba(136,184,232,0.18); }
+  body.mode-kids .card-face.cat-Body     { background: #ffe5e5; border-color: #ff9999; box-shadow: 0 4px 0 #ff9999, 0 8px 20px rgba(255,153,153,0.18); }
+  body.mode-kids .card-face.cat-Family   { background: #f3e5ff; border-color: #c799f5; box-shadow: 0 4px 0 #c799f5, 0 8px 20px rgba(199,153,245,0.18); }
+  body.mode-kids .card-face.cat-Nature   { background: #e0f5f5; border-color: #7fcaca; box-shadow: 0 4px 0 #7fcaca, 0 8px 20px rgba(127,202,202,0.18); }
+  body.mode-kids .card-face.cat-Home     { background: #fff5e0; border-color: #ffcc70; box-shadow: 0 4px 0 #ffcc70, 0 8px 20px rgba(255,204,112,0.18); }
+  body.mode-kids .card-face.cat-Clothes  { background: #f0e6ff; border-color: #b896f0; box-shadow: 0 4px 0 #b896f0, 0 8px 20px rgba(184,150,240,0.18); }
+  body.mode-kids .card-face.cat-Transport{ background: #e0f0ff; border-color: #7ab8e8; box-shadow: 0 4px 0 #7ab8e8, 0 8px 20px rgba(122,184,232,0.18); }
+  body.mode-kids .card-face.cat-Actions  { background: #fff0f5; border-color: #ff99bb; box-shadow: 0 4px 0 #ff99bb, 0 8px 20px rgba(255,153,187,0.18); }
+  body.mode-kids .card-face.cat-Feelings { background: #fff8d4; border-color: #ffd966; box-shadow: 0 4px 0 #ffd966, 0 8px 20px rgba(255,217,102,0.18); }
+  body.mode-kids .card-face.cat-Greetings{ background: #d4f5e8; border-color: #7accc7; box-shadow: 0 4px 0 #7accc7, 0 8px 20px rgba(122,204,199,0.18); }
+
+  body.mode-kids .kid-emoji { font-size: 70px; line-height: 1; user-select: none; }
+  body.mode-kids .kid-da { font-family: 'Fredoka', sans-serif; font-weight: 600; font-size: 22px; color: #2d2a4a; text-align: center; line-height: 1.1; }
+  body.mode-kids .kid-en { font-family: 'Fredoka', sans-serif; font-weight: 500; font-size: 14px; color: #6b5b8a; text-align: center; opacity: 0; transition: opacity 0.25s; min-height: 18px; }
+  body.mode-kids .card-wrap.flipped .kid-en { opacity: 1; }
+  body.mode-kids .speaker-btn { position: absolute; top: 8px; right: 8px; width: 34px; height: 34px; border-radius: 50%; background: rgba(255,255,255,0.85); border: none; cursor: pointer; font-size: 16px; display: flex; align-items: center; justify-content: center; transition: transform 0.15s; padding: 0; }
+  body.mode-kids .speaker-btn:hover { transform: scale(1.15); }
+  body.mode-kids .speaker-btn:active { transform: scale(0.92); }
+  body.mode-kids .card-wrap.known .card-face::before { content: "⭐"; position: absolute; top: 8px; left: 10px; font-size: 18px; }
+  body.mode-kids .known-dot { display: none; }
+
+  /* Streak badge — inline in the header, kids mode only */
+  .streak-badge { display: none; }
+  body.mode-kids .streak-badge { display: inline-flex; align-items: center; gap: 5px; background: #fff; border: 2px solid #ffb84d; border-radius: 18px; padding: 4px 11px; font-family: 'Fredoka', sans-serif; font-weight: 700; font-size: 14px; color: #ff7a59; box-shadow: 0 2px 0 #ffb84d; user-select: none; }
+  body.mode-kids .streak-badge.celebrate { animation: streakPop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1); }
+  @keyframes streakPop { 0% { transform: scale(1); } 40% { transform: scale(1.35) rotate(-8deg); } 70% { transform: scale(1.1) rotate(4deg); } 100% { transform: scale(1) rotate(0); } }
+
+  /* Confetti */
+  .confetti-piece { position: fixed; width: 10px; height: 14px; pointer-events: none; z-index: 9999; will-change: transform, opacity; }
+  @keyframes confettiFall { 0% { transform: translate3d(0,0,0) rotate(0); opacity: 1; } 100% { transform: translate3d(var(--cx,40px), var(--cy,300px), 0) rotate(720deg); opacity: 0; } }
+
+  /* FAB hidden in kids mode (kids tap cards directly) */
+  body.mode-kids .fab { display: none; }
 
   /* EMPTY */
   .empty-state { grid-column: 1/-1; text-align: center; padding: 60px 20px; color: var(--text-muted); }
@@ -159,7 +251,9 @@
     <div class="mode-toggle">
       <button id="mode-words-btn" class="active" onclick="setMode('words')">Words</button>
       <button id="mode-verbs-btn" onclick="setMode('verbs')">Verbs</button>
+      <button id="mode-kids-btn" onclick="setMode('kids')">🌟 Kids</button>
     </div>
+    <div class="streak-badge" id="streak-badge"><span>🔥</span><span id="streak-count">0</span></div>
     <div class="stat-pill">Total <b id="total-count">1000</b></div>
     <div class="stat-pill">Showing <b id="showing-count">1000</b></div>
     <div class="stat-pill">Known <b id="known-count">0</b></div>
@@ -1845,6 +1939,310 @@ const CAT_META_VERBS = {
   "Creation & Destruction":    { icon:"🔨" },
 };
 
+const KIDS = [
+  // ── ANIMALS (28) — most kid-pleasing category ─────────────────
+  {da:"hund",en:"dog",emoji:"🐶",cat:"Animals"},
+  {da:"kat",en:"cat",emoji:"🐱",cat:"Animals"},
+  {da:"ko",en:"cow",emoji:"🐮",cat:"Animals"},
+  {da:"hest",en:"horse",emoji:"🐴",cat:"Animals"},
+  {da:"gris",en:"pig",emoji:"🐷",cat:"Animals"},
+  {da:"får",en:"sheep",emoji:"🐑",cat:"Animals"},
+  {da:"høne",en:"hen",emoji:"🐔",cat:"Animals"},
+  {da:"and",en:"duck",emoji:"🦆",cat:"Animals"},
+  {da:"kanin",en:"rabbit",emoji:"🐰",cat:"Animals"},
+  {da:"mus",en:"mouse",emoji:"🐭",cat:"Animals"},
+  {da:"bjørn",en:"bear",emoji:"🐻",cat:"Animals"},
+  {da:"løve",en:"lion",emoji:"🦁",cat:"Animals"},
+  {da:"tiger",en:"tiger",emoji:"🐯",cat:"Animals"},
+  {da:"elefant",en:"elephant",emoji:"🐘",cat:"Animals"},
+  {da:"abe",en:"monkey",emoji:"🐵",cat:"Animals"},
+  {da:"giraf",en:"giraffe",emoji:"🦒",cat:"Animals"},
+  {da:"zebra",en:"zebra",emoji:"🦓",cat:"Animals"},
+  {da:"ræv",en:"fox",emoji:"🦊",cat:"Animals"},
+  {da:"ulv",en:"wolf",emoji:"🐺",cat:"Animals"},
+  {da:"pingvin",en:"penguin",emoji:"🐧",cat:"Animals"},
+  {da:"fugl",en:"bird",emoji:"🐦",cat:"Animals"},
+  {da:"ugle",en:"owl",emoji:"🦉",cat:"Animals"},
+  {da:"fisk",en:"fish",emoji:"🐟",cat:"Animals"},
+  {da:"hval",en:"whale",emoji:"🐳",cat:"Animals"},
+  {da:"delfin",en:"dolphin",emoji:"🐬",cat:"Animals"},
+  {da:"skildpadde",en:"turtle",emoji:"🐢",cat:"Animals"},
+  {da:"slange",en:"snake",emoji:"🐍",cat:"Animals"},
+  {da:"sommerfugl",en:"butterfly",emoji:"🦋",cat:"Animals"},
+  {da:"bi",en:"bee",emoji:"🐝",cat:"Animals"},
+  {da:"edderkop",en:"spider",emoji:"🕷️",cat:"Animals"},
+
+  // ── FOOD (40) ─────────────────────────────────────────────────
+  {da:"æble",en:"apple",emoji:"🍎",cat:"Food"},
+  {da:"banan",en:"banana",emoji:"🍌",cat:"Food"},
+  {da:"appelsin",en:"orange",emoji:"🍊",cat:"Food"},
+  {da:"pære",en:"pear",emoji:"🍐",cat:"Food"},
+  {da:"jordbær",en:"strawberry",emoji:"🍓",cat:"Food"},
+  {da:"vandmelon",en:"watermelon",emoji:"🍉",cat:"Food"},
+  {da:"ananas",en:"pineapple",emoji:"🍍",cat:"Food"},
+  {da:"vindrue",en:"grape",emoji:"🍇",cat:"Food"},
+  {da:"citron",en:"lemon",emoji:"🍋",cat:"Food"},
+  {da:"kirsebær",en:"cherry",emoji:"🍒",cat:"Food"},
+  {da:"fersken",en:"peach",emoji:"🍑",cat:"Food"},
+  {da:"gulerod",en:"carrot",emoji:"🥕",cat:"Food"},
+  {da:"kartoffel",en:"potato",emoji:"🥔",cat:"Food"},
+  {da:"tomat",en:"tomato",emoji:"🍅",cat:"Food"},
+  {da:"agurk",en:"cucumber",emoji:"🥒",cat:"Food"},
+  {da:"majs",en:"corn",emoji:"🌽",cat:"Food"},
+  {da:"broccoli",en:"broccoli",emoji:"🥦",cat:"Food"},
+  {da:"svamp",en:"mushroom",emoji:"🍄",cat:"Food"},
+  {da:"brød",en:"bread",emoji:"🍞",cat:"Food"},
+  {da:"ost",en:"cheese",emoji:"🧀",cat:"Food"},
+  {da:"æg",en:"egg",emoji:"🥚",cat:"Food"},
+  {da:"mælk",en:"milk",emoji:"🥛",cat:"Food"},
+  {da:"smør",en:"butter",emoji:"🧈",cat:"Food"},
+  {da:"pølse",en:"sausage",emoji:"🌭",cat:"Food"},
+  {da:"pizza",en:"pizza",emoji:"🍕",cat:"Food"},
+  {da:"burger",en:"burger",emoji:"🍔",cat:"Food"},
+  {da:"pommes frites",en:"fries",emoji:"🍟",cat:"Food"},
+  {da:"is",en:"ice cream",emoji:"🍦",cat:"Food"},
+  {da:"kage",en:"cake",emoji:"🍰",cat:"Food"},
+  {da:"slik",en:"candy",emoji:"🍬",cat:"Food"},
+  {da:"chokolade",en:"chocolate",emoji:"🍫",cat:"Food"},
+  {da:"kiks",en:"cookie",emoji:"🍪",cat:"Food"},
+  {da:"donut",en:"donut",emoji:"🍩",cat:"Food"},
+  {da:"honning",en:"honey",emoji:"🍯",cat:"Food"},
+  {da:"juice",en:"juice",emoji:"🧃",cat:"Food"},
+  {da:"vand",en:"water",emoji:"💧",cat:"Food"},
+  {da:"kaffe",en:"coffee",emoji:"☕",cat:"Food"},
+  {da:"te",en:"tea",emoji:"🍵",cat:"Food"},
+  {da:"suppe",en:"soup",emoji:"🍲",cat:"Food"},
+  {da:"ris",en:"rice",emoji:"🍚",cat:"Food"},
+
+  // ── COLOURS (12) ──────────────────────────────────────────────
+  {da:"rød",en:"red",emoji:"🔴",cat:"Colours"},
+  {da:"blå",en:"blue",emoji:"🔵",cat:"Colours"},
+  {da:"grøn",en:"green",emoji:"🟢",cat:"Colours"},
+  {da:"gul",en:"yellow",emoji:"🟡",cat:"Colours"},
+  {da:"orange",en:"orange",emoji:"🟠",cat:"Colours"},
+  {da:"lilla",en:"purple",emoji:"🟣",cat:"Colours"},
+  {da:"brun",en:"brown",emoji:"🟤",cat:"Colours"},
+  {da:"sort",en:"black",emoji:"⚫",cat:"Colours"},
+  {da:"hvid",en:"white",emoji:"⚪",cat:"Colours"},
+  {da:"lyserød",en:"pink",emoji:"🌸",cat:"Colours"},
+  {da:"grå",en:"grey",emoji:"🩶",cat:"Colours"},
+
+  // ── NUMBERS 1-20 (20) ────────────────────────────────────────
+  {da:"en",en:"one",emoji:"1️⃣",cat:"Numbers"},
+  {da:"to",en:"two",emoji:"2️⃣",cat:"Numbers"},
+  {da:"tre",en:"three",emoji:"3️⃣",cat:"Numbers"},
+  {da:"fire",en:"four",emoji:"4️⃣",cat:"Numbers"},
+  {da:"fem",en:"five",emoji:"5️⃣",cat:"Numbers"},
+  {da:"seks",en:"six",emoji:"6️⃣",cat:"Numbers"},
+  {da:"syv",en:"seven",emoji:"7️⃣",cat:"Numbers"},
+  {da:"otte",en:"eight",emoji:"8️⃣",cat:"Numbers"},
+  {da:"ni",en:"nine",emoji:"9️⃣",cat:"Numbers"},
+  {da:"ti",en:"ten",emoji:"🔟",cat:"Numbers"},
+  {da:"elleve",en:"eleven",emoji:"1️⃣1️⃣",cat:"Numbers"},
+  {da:"tolv",en:"twelve",emoji:"1️⃣2️⃣",cat:"Numbers"},
+  {da:"tretten",en:"thirteen",emoji:"1️⃣3️⃣",cat:"Numbers"},
+  {da:"fjorten",en:"fourteen",emoji:"1️⃣4️⃣",cat:"Numbers"},
+  {da:"femten",en:"fifteen",emoji:"1️⃣5️⃣",cat:"Numbers"},
+  {da:"seksten",en:"sixteen",emoji:"1️⃣6️⃣",cat:"Numbers"},
+  {da:"sytten",en:"seventeen",emoji:"1️⃣7️⃣",cat:"Numbers"},
+  {da:"atten",en:"eighteen",emoji:"1️⃣8️⃣",cat:"Numbers"},
+  {da:"nitten",en:"nineteen",emoji:"1️⃣9️⃣",cat:"Numbers"},
+  {da:"tyve",en:"twenty",emoji:"2️⃣0️⃣",cat:"Numbers"},
+
+  // ── BODY (16) ─────────────────────────────────────────────────
+  {da:"hoved",en:"head",emoji:"😀",cat:"Body"},
+  {da:"hår",en:"hair",emoji:"💇",cat:"Body"},
+  {da:"øje",en:"eye",emoji:"👁️",cat:"Body"},
+  {da:"næse",en:"nose",emoji:"👃",cat:"Body"},
+  {da:"mund",en:"mouth",emoji:"👄",cat:"Body"},
+  {da:"tand",en:"tooth",emoji:"🦷",cat:"Body"},
+  {da:"tunge",en:"tongue",emoji:"👅",cat:"Body"},
+  {da:"øre",en:"ear",emoji:"👂",cat:"Body"},
+  {da:"hånd",en:"hand",emoji:"✋",cat:"Body"},
+  {da:"finger",en:"finger",emoji:"☝️",cat:"Body"},
+  {da:"arm",en:"arm",emoji:"💪",cat:"Body"},
+  {da:"ben",en:"leg",emoji:"🦵",cat:"Body"},
+  {da:"fod",en:"foot",emoji:"🦶",cat:"Body"},
+  {da:"hjerte",en:"heart",emoji:"❤️",cat:"Body"},
+  {da:"hjerne",en:"brain",emoji:"🧠",cat:"Body"},
+  {da:"knogle",en:"bone",emoji:"🦴",cat:"Body"},
+
+  // ── FAMILY (12) ───────────────────────────────────────────────
+  {da:"mor",en:"mom",emoji:"👩",cat:"Family"},
+  {da:"far",en:"dad",emoji:"👨",cat:"Family"},
+  {da:"baby",en:"baby",emoji:"👶",cat:"Family"},
+  {da:"barn",en:"child",emoji:"🧒",cat:"Family"},
+  {da:"dreng",en:"boy",emoji:"👦",cat:"Family"},
+  {da:"pige",en:"girl",emoji:"👧",cat:"Family"},
+  {da:"bror",en:"brother",emoji:"👦",cat:"Family"},
+  {da:"søster",en:"sister",emoji:"👧",cat:"Family"},
+  {da:"bedstemor",en:"grandma",emoji:"👵",cat:"Family"},
+  {da:"bedstefar",en:"grandpa",emoji:"👴",cat:"Family"},
+  {da:"familie",en:"family",emoji:"👨‍👩‍👧‍👦",cat:"Family"},
+  {da:"ven",en:"friend",emoji:"🤝",cat:"Family"},
+
+  // ── NATURE (24) ───────────────────────────────────────────────
+  {da:"sol",en:"sun",emoji:"☀️",cat:"Nature"},
+  {da:"måne",en:"moon",emoji:"🌙",cat:"Nature"},
+  {da:"stjerne",en:"star",emoji:"⭐",cat:"Nature"},
+  {da:"sky",en:"cloud",emoji:"☁️",cat:"Nature"},
+  {da:"regn",en:"rain",emoji:"🌧️",cat:"Nature"},
+  {da:"sne",en:"snow",emoji:"❄️",cat:"Nature"},
+  {da:"lyn",en:"lightning",emoji:"⚡",cat:"Nature"},
+  {da:"vind",en:"wind",emoji:"💨",cat:"Nature"},
+  {da:"ild",en:"fire",emoji:"🔥",cat:"Nature"},
+  {da:"træ",en:"tree",emoji:"🌳",cat:"Nature"},
+  {da:"blomst",en:"flower",emoji:"🌸",cat:"Nature"},
+  {da:"græs",en:"grass",emoji:"🌱",cat:"Nature"},
+  {da:"blad",en:"leaf",emoji:"🍃",cat:"Nature"},
+  {da:"skov",en:"forest",emoji:"🌲",cat:"Nature"},
+  {da:"bjerg",en:"mountain",emoji:"⛰️",cat:"Nature"},
+  {da:"hav",en:"sea",emoji:"🌊",cat:"Nature"},
+  {da:"strand",en:"beach",emoji:"🏖️",cat:"Nature"},
+  {da:"flod",en:"river",emoji:"🏞️",cat:"Nature"},
+  {da:"sø",en:"lake",emoji:"💦",cat:"Nature"},
+  {da:"jord",en:"earth",emoji:"🌍",cat:"Nature"},
+  {da:"sten",en:"stone",emoji:"🪨",cat:"Nature"},
+  {da:"isterning",en:"ice cube",emoji:"🧊",cat:"Nature"},
+  {da:"regnbue",en:"rainbow",emoji:"🌈",cat:"Nature"},
+  {da:"vulkan",en:"volcano",emoji:"🌋",cat:"Nature"},
+
+  // ── HOME (22) ─────────────────────────────────────────────────
+  {da:"hus",en:"house",emoji:"🏠",cat:"Home"},
+  {da:"dør",en:"door",emoji:"🚪",cat:"Home"},
+  {da:"vindue",en:"window",emoji:"🪟",cat:"Home"},
+  {da:"seng",en:"bed",emoji:"🛏️",cat:"Home"},
+  {da:"stol",en:"chair",emoji:"🪑",cat:"Home"},
+  {da:"bord",en:"table",emoji:"🍽️",cat:"Home"},
+  {da:"sofa",en:"sofa",emoji:"🛋️",cat:"Home"},
+  {da:"toilet",en:"toilet",emoji:"🚽",cat:"Home"},
+  {da:"badekar",en:"bathtub",emoji:"🛁",cat:"Home"},
+  {da:"bruser",en:"shower",emoji:"🚿",cat:"Home"},
+  {da:"sæbe",en:"soap",emoji:"🧼",cat:"Home"},
+  {da:"tandbørste",en:"toothbrush",emoji:"🪥",cat:"Home"},
+  {da:"lampe",en:"lamp",emoji:"💡",cat:"Home"},
+  {da:"ur",en:"clock",emoji:"🕐",cat:"Home"},
+  {da:"nøgle",en:"key",emoji:"🔑",cat:"Home"},
+  {da:"telefon",en:"phone",emoji:"📱",cat:"Home"},
+  {da:"computer",en:"computer",emoji:"💻",cat:"Home"},
+  {da:"fjernsyn",en:"TV",emoji:"📺",cat:"Home"},
+  {da:"bog",en:"book",emoji:"📖",cat:"Home"},
+  {da:"legetøj",en:"toy",emoji:"🧸",cat:"Home"},
+  {da:"bold",en:"ball",emoji:"⚽",cat:"Home"},
+  {da:"balloner",en:"balloons",emoji:"🎈",cat:"Home"},
+
+  // ── CLOTHES (14) ──────────────────────────────────────────────
+  {da:"trøje",en:"shirt",emoji:"👕",cat:"Clothes"},
+  {da:"bukser",en:"pants",emoji:"👖",cat:"Clothes"},
+  {da:"kjole",en:"dress",emoji:"👗",cat:"Clothes"},
+  {da:"sko",en:"shoe",emoji:"👟",cat:"Clothes"},
+  {da:"støvle",en:"boot",emoji:"🥾",cat:"Clothes"},
+  {da:"sok",en:"sock",emoji:"🧦",cat:"Clothes"},
+  {da:"hat",en:"hat",emoji:"🎩",cat:"Clothes"},
+  {da:"hue",en:"cap",emoji:"🧢",cat:"Clothes"},
+  {da:"jakke",en:"jacket",emoji:"🧥",cat:"Clothes"},
+  {da:"vante",en:"mitten",emoji:"🧤",cat:"Clothes"},
+  {da:"halstørklæde",en:"scarf",emoji:"🧣",cat:"Clothes"},
+  {da:"briller",en:"glasses",emoji:"👓",cat:"Clothes"},
+  {da:"krone",en:"crown",emoji:"👑",cat:"Clothes"},
+  {da:"taske",en:"bag",emoji:"🎒",cat:"Clothes"},
+
+  // ── TRANSPORT (18) ────────────────────────────────────────────
+  {da:"bil",en:"car",emoji:"🚗",cat:"Transport"},
+  {da:"bus",en:"bus",emoji:"🚌",cat:"Transport"},
+  {da:"tog",en:"train",emoji:"🚂",cat:"Transport"},
+  {da:"fly",en:"plane",emoji:"✈️",cat:"Transport"},
+  {da:"helikopter",en:"helicopter",emoji:"🚁",cat:"Transport"},
+  {da:"båd",en:"boat",emoji:"⛵",cat:"Transport"},
+  {da:"skib",en:"ship",emoji:"🚢",cat:"Transport"},
+  {da:"raket",en:"rocket",emoji:"🚀",cat:"Transport"},
+  {da:"cykel",en:"bicycle",emoji:"🚲",cat:"Transport"},
+  {da:"motorcykel",en:"motorcycle",emoji:"🏍️",cat:"Transport"},
+  {da:"lastbil",en:"truck",emoji:"🚚",cat:"Transport"},
+  {da:"traktor",en:"tractor",emoji:"🚜",cat:"Transport"},
+  {da:"taxi",en:"taxi",emoji:"🚕",cat:"Transport"},
+  {da:"politibil",en:"police car",emoji:"🚓",cat:"Transport"},
+  {da:"brandbil",en:"fire truck",emoji:"🚒",cat:"Transport"},
+  {da:"ambulance",en:"ambulance",emoji:"🚑",cat:"Transport"},
+  {da:"løbehjul",en:"scooter",emoji:"🛴",cat:"Transport"},
+  {da:"rulleskøjte",en:"skate",emoji:"🛼",cat:"Transport"},
+
+  // ── ACTIONS / VERBS the kid can act out (22) ─────────────────
+  {da:"løbe",en:"to run",emoji:"🏃",cat:"Actions"},
+  {da:"gå",en:"to walk",emoji:"🚶",cat:"Actions"},
+  {da:"hoppe",en:"to jump",emoji:"🤾",cat:"Actions"},
+  {da:"danse",en:"to dance",emoji:"💃",cat:"Actions"},
+  {da:"synge",en:"to sing",emoji:"🎤",cat:"Actions"},
+  {da:"sove",en:"to sleep",emoji:"😴",cat:"Actions"},
+  {da:"spise",en:"to eat",emoji:"🍴",cat:"Actions"},
+  {da:"drikke",en:"to drink",emoji:"🥤",cat:"Actions"},
+  {da:"svømme",en:"to swim",emoji:"🏊",cat:"Actions"},
+  {da:"klatre",en:"to climb",emoji:"🧗",cat:"Actions"},
+  {da:"flyve",en:"to fly",emoji:"🕊️",cat:"Actions"},
+  {da:"læse",en:"to read",emoji:"📚",cat:"Actions"},
+  {da:"skrive",en:"to write",emoji:"✏️",cat:"Actions"},
+  {da:"tegne",en:"to draw",emoji:"🎨",cat:"Actions"},
+  {da:"male",en:"to paint",emoji:"🖌️",cat:"Actions"},
+  {da:"lege",en:"to play",emoji:"🪀",cat:"Actions"},
+  {da:"smile",en:"to smile",emoji:"😊",cat:"Actions"},
+  {da:"græde",en:"to cry",emoji:"😢",cat:"Actions"},
+  {da:"grine",en:"to laugh",emoji:"😂",cat:"Actions"},
+  {da:"kysse",en:"to kiss",emoji:"😘",cat:"Actions"},
+  {da:"kramme",en:"to hug",emoji:"🤗",cat:"Actions"},
+  {da:"vinke",en:"to wave",emoji:"👋",cat:"Actions"},
+
+  // ── FEELINGS / ADJECTIVES (16) ───────────────────────────────
+  {da:"glad",en:"happy",emoji:"😀",cat:"Feelings"},
+  {da:"trist",en:"sad",emoji:"😢",cat:"Feelings"},
+  {da:"vred",en:"angry",emoji:"😠",cat:"Feelings"},
+  {da:"bange",en:"scared",emoji:"😨",cat:"Feelings"},
+  {da:"træt",en:"tired",emoji:"🥱",cat:"Feelings"},
+  {da:"sulten",en:"hungry",emoji:"🍽️",cat:"Feelings"},
+  {da:"tørstig",en:"thirsty",emoji:"💧",cat:"Feelings"},
+  {da:"syg",en:"sick",emoji:"🤒",cat:"Feelings"},
+  {da:"stor",en:"big",emoji:"🐘",cat:"Feelings"},
+  {da:"lille",en:"small",emoji:"🐭",cat:"Feelings"},
+  {da:"varm",en:"hot",emoji:"🥵",cat:"Feelings"},
+  {da:"kold",en:"cold",emoji:"🥶",cat:"Feelings"},
+  {da:"hurtig",en:"fast",emoji:"💨",cat:"Feelings"},
+  {da:"langsom",en:"slow",emoji:"🐢",cat:"Feelings"},
+  {da:"stærk",en:"strong",emoji:"💪",cat:"Feelings"},
+  {da:"sød",en:"sweet/cute",emoji:"🥰",cat:"Feelings"},
+
+  // ── GREETINGS / PHRASES (12) ─────────────────────────────────
+  {da:"hej",en:"hi",emoji:"👋",cat:"Greetings"},
+  {da:"farvel",en:"goodbye",emoji:"🙋",cat:"Greetings"},
+  {da:"tak",en:"thanks",emoji:"🙏",cat:"Greetings"},
+  {da:"velbekomme",en:"you're welcome",emoji:"😊",cat:"Greetings"},
+  {da:"undskyld",en:"sorry",emoji:"🙇",cat:"Greetings"},
+  {da:"ja",en:"yes",emoji:"✅",cat:"Greetings"},
+  {da:"nej",en:"no",emoji:"❌",cat:"Greetings"},
+  {da:"god morgen",en:"good morning",emoji:"🌅",cat:"Greetings"},
+  {da:"god nat",en:"good night",emoji:"🌙",cat:"Greetings"},
+  {da:"vær så god",en:"please / here you go",emoji:"🤲",cat:"Greetings"},
+  {da:"hjælp",en:"help",emoji:"🆘",cat:"Greetings"},
+  {da:"jeg elsker dig",en:"I love you",emoji:"💖",cat:"Greetings"},
+];
+
+
+const CAT_META_KIDS = {
+  "All":       { icon:"🌟" },
+  "Animals":   { icon:"🐾" },
+  "Food":      { icon:"🍎" },
+  "Colours":   { icon:"🎨" },
+  "Numbers":   { icon:"🔢" },
+  "Body":      { icon:"👤" },
+  "Family":    { icon:"👨‍👩‍👧" },
+  "Nature":    { icon:"🌳" },
+  "Home":      { icon:"🏠" },
+  "Clothes":   { icon:"👕" },
+  "Transport": { icon:"🚗" },
+  "Actions":   { icon:"🏃" },
+  "Feelings":  { icon:"😊" },
+  "Greetings": { icon:"👋" },
+};
+
+
 
 // ── CATEGORY META ──────────────────────────────────────────────────
 const CAT_META = {
@@ -1879,8 +2277,9 @@ const CAT_META = {
 };
 
 // ── STATE ──────────────────────────────────────────────────────────
-const KNOWN_KEY = { words: 'dk-known', verbs: 'dk-known-verbs' };
+const KNOWN_KEY = { words: 'dk-known', verbs: 'dk-known-verbs', kids: 'dk-known-kids' };
 let mode       = localStorage.getItem('dk-mode') || 'words';
+if (!KNOWN_KEY[mode]) mode = 'words'; // guard against stale values
 let known      = new Set(JSON.parse(localStorage.getItem(KNOWN_KEY[mode]) || '[]'));
 let activeCat  = 'All';
 let searchTerm = '';
@@ -1888,9 +2287,21 @@ let onlyKnown  = false;
 let allFlipped = false;
 
 // ── DATASET ACCESSORS ─────────────────────────────────────────────
-function dataset() { return mode === 'verbs' ? verbs : words; }
-function catMeta()  { return mode === 'verbs' ? CAT_META_VERBS : CAT_META; }
-function itemLabel(){ return mode === 'verbs' ? 'verb' : 'word'; }
+function dataset() {
+  if (mode === 'verbs') return verbs;
+  if (mode === 'kids')  return KIDS;
+  return words;
+}
+function catMeta() {
+  if (mode === 'verbs') return CAT_META_VERBS;
+  if (mode === 'kids')  return CAT_META_KIDS;
+  return CAT_META;
+}
+function itemLabel() {
+  if (mode === 'verbs') return 'verb';
+  if (mode === 'kids')  return 'word';
+  return 'word';
+}
 
 // ── BUILD SIDEBAR ─────────────────────────────────────────────────
 const sidebar = document.getElementById('sidebar');
@@ -1939,11 +2350,18 @@ function setMode(newMode) {
   allFlipped = false;
   document.getElementById('search').value = '';
   document.getElementById('known-filter-btn').classList.remove('active');
-  document.getElementById('mode-words-btn').classList.toggle('active', mode === 'words');
-  document.getElementById('mode-verbs-btn').classList.toggle('active', mode === 'verbs');
-  document.body.classList.toggle('mode-verbs', mode === 'verbs');
+  applyModeClasses();
+  refreshStreakBadge();
   buildSidebar();
   applyFilters();
+}
+
+function applyModeClasses() {
+  document.getElementById('mode-words-btn').classList.toggle('active', mode === 'words');
+  document.getElementById('mode-verbs-btn').classList.toggle('active', mode === 'verbs');
+  document.getElementById('mode-kids-btn').classList.toggle('active',  mode === 'kids');
+  document.body.classList.toggle('mode-verbs', mode === 'verbs');
+  document.body.classList.toggle('mode-kids',  mode === 'kids');
 }
 
 // ── FILTERS ───────────────────────────────────────────────────────
@@ -1969,7 +2387,7 @@ function applyFilters() { renderCards(getFiltered()); }
 function renderCards(list) {
   const grid = document.getElementById('grid');
   grid.innerHTML = '';
-  const sectionLabel = mode === 'verbs' ? 'All Verbs' : 'All Words';
+  const sectionLabel = mode === 'verbs' ? 'All Verbs' : (mode === 'kids' ? 'All Words' : 'All Words');
   document.getElementById('section-title').textContent =
     activeCat === 'All' ? sectionLabel : activeCat;
   document.getElementById('section-count').textContent =
@@ -1988,11 +2406,31 @@ function renderCards(list) {
     const wrap = document.createElement('div');
     wrap.className = 'card-wrap' + (isKnown ? ' known' : '');
 
-    if (mode === 'verbs') {
+    if (mode === 'kids') {
+      // Kid card: emoji-first, audio-first, no flip — tap pops + speaks
+      wrap.innerHTML = `
+        <div class="card-inner">
+          <div class="card-face card-front cat-${w.cat}">
+            <button class="speaker-btn" type="button" aria-label="Play sound">🔊</button>
+            <div class="kid-emoji">${w.emoji}</div>
+            <div class="kid-da">${w.da}</div>
+            <div class="kid-en">${w.en}</div>
+          </div>
+        </div>`;
+      // Speaker button replays without re-popping
+      wrap.querySelector('.speaker-btn').addEventListener('click', e => {
+        e.stopPropagation();
+        speak(w.da);
+      });
+      wrap.addEventListener('click', () => kidTap(wrap, w));
+    } else if (mode === 'verbs') {
       const auxClass = (w.perf && w.perf.startsWith('er ')) ? 'aux-er' : '';
+      // Strip leading "at " for speech — TTS pronounces the verb cleaner without the infinitive marker
+      const spoken = w.da.replace(/^at\s+/, '');
       wrap.innerHTML = `
         <div class="card-inner">
           <div class="card-face card-front">
+            <button class="adult-speaker-btn" type="button" aria-label="Play sound">🔊</button>
             <span class="card-num">#${data.indexOf(w)+1}</span>
             <div class="danish-word">${w.da}</div>
             <div class="word-type">verb</div>
@@ -2008,10 +2446,16 @@ function renderCards(list) {
             <div class="verb-en">${w.en}</div>
           </div>
         </div>`;
+      wrap.querySelector('.adult-speaker-btn').addEventListener('click', e => {
+        e.stopPropagation();
+        speak(spoken);
+      });
+      wrap.addEventListener('click', () => toggleCard(wrap, w));
     } else {
       wrap.innerHTML = `
         <div class="card-inner">
           <div class="card-face card-front">
+            <button class="adult-speaker-btn" type="button" aria-label="Play sound">🔊</button>
             <span class="card-num">#${data.indexOf(w)+1}</span>
             <div class="danish-word">${w.da}</div>
             <div class="word-type">${w.type}</div>
@@ -2022,8 +2466,12 @@ function renderCards(list) {
             <div class="english-word">${w.en}</div>
           </div>
         </div>`;
+      wrap.querySelector('.adult-speaker-btn').addEventListener('click', e => {
+        e.stopPropagation();
+        speak(w.da);
+      });
+      wrap.addEventListener('click', () => toggleCard(wrap, w));
     }
-    wrap.addEventListener('click', () => toggleCard(wrap, w));
     grid.appendChild(wrap);
   });
   updateStats();
@@ -2036,6 +2484,26 @@ function toggleCard(wrap, w) {
     known.add(w.da);
     wrap.classList.add('known');
     localStorage.setItem(KNOWN_KEY[mode], JSON.stringify([...known]));
+    updateStats();
+  }
+}
+
+// Kid tap: pop, speak Danish, confetti, mark known, second tap shows English
+function kidTap(wrap, w) {
+  const alreadyFlipped = wrap.classList.contains('flipped');
+  // First tap shows English under the word, second tap hides it again
+  wrap.classList.toggle('flipped');
+  // Always pop + speak + chime, regardless of flip state
+  wrap.classList.add('popping');
+  setTimeout(() => wrap.classList.remove('popping'), 200);
+  speak(w.da);
+  playChime();
+  fireConfetti(wrap);
+  if (!known.has(w.da)) {
+    known.add(w.da);
+    wrap.classList.add('known');
+    localStorage.setItem(KNOWN_KEY[mode], JSON.stringify([...known]));
+    bumpStreak();
     updateStats();
   }
 }
@@ -2090,10 +2558,142 @@ document.getElementById('search').addEventListener('input', e => {
   applyFilters();
 });
 
+// ════════════════════════════════════════════════════════════════════
+// KIDS MODE HELPERS — speech, confetti, chime, streak
+// ════════════════════════════════════════════════════════════════════
+
+// ── SPEECH ────────────────────────────────────────────────────────
+// Picks first Danish voice once it's available; speaks short utterances.
+// MUST be called synchronously inside a click handler (iOS gesture rule).
+let _daVoice = null;
+function pickDanishVoice() {
+  if (!('speechSynthesis' in window)) return null;
+  const voices = speechSynthesis.getVoices();
+  // Prefer local (offline) voices first, then any da-* voice
+  const local = voices.find(v => v.lang && v.lang.toLowerCase().startsWith('da') && v.localService);
+  if (local) return local;
+  return voices.find(v => v.lang && v.lang.toLowerCase().startsWith('da')) || null;
+}
+if ('speechSynthesis' in window) {
+  // Voices arrive asynchronously
+  _daVoice = pickDanishVoice();
+  speechSynthesis.addEventListener && speechSynthesis.addEventListener('voiceschanged', () => {
+    _daVoice = pickDanishVoice();
+  });
+}
+function speak(text) {
+  if (!('speechSynthesis' in window)) return;
+  try {
+    speechSynthesis.cancel(); // Chrome stall fix
+    if (!_daVoice) _daVoice = pickDanishVoice();
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = 'da-DK';
+    u.rate = 0.85;  // slightly slower for kid learners
+    u.pitch = 1.05;
+    if (_daVoice) u.voice = _daVoice;
+    speechSynthesis.speak(u);
+  } catch (e) { /* silent — speech is enhancement, not core */ }
+}
+
+// ── CHIME ─────────────────────────────────────────────────────────
+let _audioCtx = null;
+function playChime() {
+  try {
+    if (!_audioCtx) _audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    const ctx = _audioCtx;
+    if (ctx.state === 'suspended') ctx.resume();
+    const now = ctx.currentTime;
+    // Two-note ding: rising fifth
+    [523.25, 783.99].forEach((freq, i) => {
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = 'sine';
+      osc.frequency.value = freq;
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      const start = now + i * 0.06;
+      gain.gain.setValueAtTime(0, start);
+      gain.gain.linearRampToValueAtTime(0.15, start + 0.02);
+      gain.gain.exponentialRampToValueAtTime(0.001, start + 0.25);
+      osc.start(start);
+      osc.stop(start + 0.3);
+    });
+  } catch (e) { /* silent */ }
+}
+
+// ── CONFETTI ──────────────────────────────────────────────────────
+const CONFETTI_COLORS = ['#ff7a59','#ffd966','#7accc7','#c799f5','#88b8e8','#a8d995','#ff9bcc'];
+function fireConfetti(originEl) {
+  const rect = originEl.getBoundingClientRect();
+  const cx = rect.left + rect.width / 2;
+  const cy = rect.top + rect.height / 2;
+  const N = 18;
+  for (let i = 0; i < N; i++) {
+    const piece = document.createElement('div');
+    piece.className = 'confetti-piece';
+    const angle = (Math.PI * 2 * i) / N + (Math.random() - 0.5) * 0.4;
+    const dist = 90 + Math.random() * 80;
+    const dx = Math.cos(angle) * dist;
+    const dy = Math.sin(angle) * dist - 30; // upward bias
+    piece.style.left = cx + 'px';
+    piece.style.top = cy + 'px';
+    piece.style.setProperty('--cx', dx + 'px');
+    piece.style.setProperty('--cy', dy + 'px');
+    piece.style.background = CONFETTI_COLORS[i % CONFETTI_COLORS.length];
+    piece.style.animation = `confettiFall ${800 + Math.random() * 400}ms ease-out forwards`;
+    piece.style.borderRadius = (Math.random() > 0.5 ? '50%' : '2px');
+    document.body.appendChild(piece);
+    setTimeout(() => piece.remove(), 1300);
+  }
+}
+
+// ── STREAK ────────────────────────────────────────────────────────
+function todayKey() {
+  const d = new Date();
+  return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+}
+function loadStreak() {
+  try {
+    return JSON.parse(localStorage.getItem('dk-kids-streak') || 'null') || { count: 0, lastDate: null };
+  } catch { return { count: 0, lastDate: null }; }
+}
+function saveStreak(s) { localStorage.setItem('dk-kids-streak', JSON.stringify(s)); }
+function bumpStreak() {
+  const s = loadStreak();
+  const today = todayKey();
+  if (s.lastDate === today) return; // already counted today
+  // Was yesterday? Then increment. Else reset to 1.
+  const y = new Date(); y.setDate(y.getDate() - 1);
+  const yKey = y.getFullYear() + '-' + String(y.getMonth()+1).padStart(2,'0') + '-' + String(y.getDate()).padStart(2,'0');
+  s.count = (s.lastDate === yKey) ? s.count + 1 : 1;
+  s.lastDate = today;
+  saveStreak(s);
+  refreshStreakBadge(true);
+}
+function refreshStreakBadge(celebrate) {
+  const s = loadStreak();
+  // Did the streak break? If lastDate is older than yesterday, show 0
+  let display = s.count;
+  if (s.lastDate) {
+    const last = new Date(s.lastDate + 'T00:00:00');
+    const today = new Date(todayKey() + 'T00:00:00');
+    const diffDays = Math.round((today - last) / (1000 * 60 * 60 * 24));
+    if (diffDays > 1) display = 0;
+  } else {
+    display = 0;
+  }
+  document.getElementById('streak-count').textContent = display;
+  if (celebrate) {
+    const badge = document.getElementById('streak-badge');
+    badge.classList.remove('celebrate');
+    void badge.offsetWidth; // restart animation
+    badge.classList.add('celebrate');
+  }
+}
+
 // init — restore mode from localStorage, then render
-document.getElementById('mode-words-btn').classList.toggle('active', mode === 'words');
-document.getElementById('mode-verbs-btn').classList.toggle('active', mode === 'verbs');
-document.body.classList.toggle('mode-verbs', mode === 'verbs');
+applyModeClasses();
+refreshStreakBadge();
 buildSidebar();
 applyFilters();
 </script>
